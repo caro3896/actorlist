@@ -23,7 +23,21 @@ actors.forEach(actor => {
     console.log("Actor is displayed");
     const clone = template.cloneNode(true);
     clone.querySelector(".name").textContent = actor.fullname;
-    clone.querySelector(".movie").textContent = actor.movie;
+    clone.querySelector(".popup .fullname").textContent = actor.fullname;
+    clone.querySelector(".popup .movie").textContent = `Featured in ${actor.movie}`;
+    clone.querySelector(".name").addEventListener("click", showDetails);
     dest.appendChild(clone);
 });
+}
+
+function showDetails(){
+    console.log("Details clicked")
+    document.querySelector(".popup").classList.add('active');
+    // document.querySelector("#overlay").classList.add('active');
+    document.querySelector(".close").addEventListener("click", closeDetails);
+}
+
+function closeDetails(){
+    document.querySelector(".popup").classList.remove('active');
+    // document.querySelector("#overlay").classList.remove('active');
 }
